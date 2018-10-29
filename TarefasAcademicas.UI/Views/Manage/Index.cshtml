@@ -1,0 +1,25 @@
+﻿@model TarefasAcademicas.UI.Models.IndexViewModel
+@{
+    ViewBag.Title = "Gerenciar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Alterar configurações de sua conta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @if (Model.HasPassword)
+            {
+	            <a href="@Url.Action("ChangePassword", "Manage")" role="button" class="glyphicon glyphicon-pencil btn btn-primary"> Alterar sua senha</a>
+            }
+            else
+            {
+                @Html.ActionLink("Criar", "SetPassword")
+            }
+        </dd>
+        
+    </dl>
+</div>

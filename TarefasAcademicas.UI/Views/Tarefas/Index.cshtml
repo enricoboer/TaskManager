@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TarefasAcademicas.DataAccess.Model.Tarefas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br/>
+
+<p>
+	<a href="@Url.Action("Create", "Tarefas")" role="button" class="btn btn-success">Nova tarefa</a>
+</p>
+<table class="table">
+	<tr>
+		<th>
+			<i class="glyphicon glyphicon-search "></i> @Html.DisplayNameFor(model => model.Tarefa)
+		</th>
+		<th>
+			<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayNameFor(model => model.DataInicio)
+		</th>
+		<th>
+			<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayNameFor(model => model.DataFinal)
+		</th>
+		<th>
+			<i class="glyphicon glyphicon-tasks"></i> @Html.DisplayNameFor(model => model.Categoria)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Tarefa)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DataInicio)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DataFinal)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Categoria)
+			</td>
+			<td>
+				<a href="@Url.Action("Edit", "Tarefas", new {id = item.Id})" role="button" class="glyphicon glyphicon-pencil btn btn-warning"> Editar</a>
+				<a href="@Url.Action("Details", "Tarefas", new {id = item.Id})" role="button" class=" glyphicon glyphicon-info-sign btn btn-info"> Detalhes</a>
+				<a href="@Url.Action("Delete", "Tarefas", new {id = item.Id})" role="button" class="glyphicon glyphicon-remove btn btn-danger"> Deletar</a>
+
+			</td>
+		</tr>
+	}
+
+</table>

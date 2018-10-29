@@ -1,0 +1,9 @@
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\obj\Debug\TarefasAcademicas.DataAccess.csprojAssemblyReference.cache
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\obj\Debug\TarefasAcademicas.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\obj\Debug\TarefasAcademicas.Repository.dll
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\obj\Debug\TarefasAcademicas.Repository.pdb
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\bin\Debug\TarefasAcademicas.Repository.dll
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\bin\Debug\TarefasAcademicas.Repository.pdb
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\bin\Debug\Dapper.dll
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\bin\Debug\Dapper.xml
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.Repository\obj\Debug\TarefasAcademicas.DataAccess.csproj.CopyComplete
