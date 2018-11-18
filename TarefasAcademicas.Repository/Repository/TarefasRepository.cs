@@ -12,7 +12,7 @@ namespace TarefasAcademicas.DataAccess.Repository
     {
         public Tarefas Adicionar(Tarefas tarefa)
         {
-            var query = @"INSERT INTO Tarefas(Id,Tarefas, Data_Inicio, Data_Final, Categoria, UsuarioId) VALUES(@id,@tarefa,@datainicio,@datafinal,@categoria,@usuarioId)";
+            var query = @"INSERT INTO Tarefas(Id,Tarefas, Data_Inicio, Data_Final, Categoria, UsuarioId, Status) VALUES(@id,@tarefa,@datainicio,@datafinal,@categoria,@usuarioId,@status)";
 
             var parameters = new DynamicParameters();
             parameters.Add("@id", Guid.NewGuid());
@@ -21,6 +21,18 @@ namespace TarefasAcademicas.DataAccess.Repository
             parameters.Add("@datafinal", tarefa.DataFinal);
             parameters.Add("@categoria", tarefa.Categoria);
             parameters.Add("@usuarioId", tarefa.UsuarioId);
+            if (tarefa.DataInicio > tarefa.DataFinal)
+            {
+                parameters.Add("@status", 1) ;
+            }
+            else if (tarefa.DataInicio == tarefa.DataFinal)
+            {
+                parameters.Add("@status", 2);
+            }
+            else
+            {
+                parameters.Add("@status", 3);
+            }
 
             connection.Execute(query, parameters);
 
@@ -92,5 +104,60 @@ namespace TarefasAcademicas.DataAccess.Repository
 
             return result?.ToList();
         }
+
+        public int ObterNumeroTotalTarefas(Guid usuarioId)
+        {
+            var query = @"SELECT COUNT(*) FROM Tarefas WHERE UsuarioId = @usuarioId";
+
+            var result = connection.Query<int>(query, new
+            {
+                @usuarioId= usuarioId
+            });
+
+            return result.First();
+        }
+
+        public int ObterNumeroTotalTarefasForadoPrazo(Guid usuarioId)
+        {
+
+            var query = @"SELECT COUNT(*) FROM Tarefas WHERE UsuarioId = @usuarioId and Status = 1";
+
+            var result = connection.Query<int>(query, new
+            {
+                @usuarioId = usuarioId
+            });
+
+            return result.First();
+        }
+
+        public int ObterNumeroTotalTarefasDentrodoPrazo(Guid usuarioId)
+        {
+
+            var query = @"SELECT COUNT(*) FROM Tarefas WHERE UsuarioId = @usuarioId and Status = 3";
+
+            var result = connection.Query<int>(query, new
+            {
+                @usuarioId = usuarioId
+            });
+
+            return result.First();
+        }
+
+
+        public int ObterNumeroTotalTarefasIgualPrazo(Guid usuarioId)
+        {
+
+            var query = @"SELECT COUNT(*) FROM Tarefas WHERE UsuarioId = @usuarioId and Status = 2";
+
+            var result = connection.Query<int>(query, new
+            {
+                @usuarioId = usuarioId
+            });
+
+            return result.First();
+        }
+
+
+
     }
 }

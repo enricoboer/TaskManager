@@ -1,60 +1,50 @@
 ﻿@using TarefasAcademicas.UI.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Efetuar login";
+	ViewBag.Title = "Efetuar login";
 }
+<body class="bg-img">
+	<div class="thumbnail  icon-position ">
+		<div class="borda">
+			<img src="https://img.icons8.com/color/200/000000/user-group-man-woman.png">
+			@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+			{
+				@Html.AntiForgeryToken()
+				<hr />
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<div class="form-group">
+					@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Digite o e-mail e senha para efetuar login.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-1 col-md-11">
-	                    <input type="submit" value="Entrar" class="btn btn-success" />
-	                    <a href="@Url.Action("Register")" role="button" class="btn btn-primary"> Registrar-se como novo usuário</a>
-
-                    </div>
-                </div>
-                <p>
-
-                </p>
-                @* Ativar isso assim que você tiver a confirmação de conta ativada para a funcionalidade de redefinição de senha
-                    <p>
-                        @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-</div>
+				<div class="form-group">
+					@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-1 col-md-10">
+						<div class="checkbox">
+							@Html.CheckBoxFor(m => m.RememberMe)
+							@Html.LabelFor(m => m.RememberMe)
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-success width-full"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+				<br />
+				<br />
+				<a href="@Url.Action("Register")" role="button" class="btn btn-primary width-full"><i class="fas fa-user-plus"></i> Registrar-se como novo usuário</a>
+			}
+		</div>
+	</div>
+	}
+</body>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }

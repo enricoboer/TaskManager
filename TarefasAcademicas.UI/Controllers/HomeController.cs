@@ -9,19 +9,37 @@ using TarefasAcademicas.DataAccess.Repository;
 
 namespace TarefasAcademicas.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : TarefasAcademicas
     {
         private readonly UsuarioRepository _usuarioRepository;
+        private readonly TarefasRepository _tarefasRepository;
 
         public HomeController()
         {
             _usuarioRepository = new UsuarioRepository();
+            _tarefasRepository = new TarefasRepository();
         }
 
         public ActionResult Index()
 
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var numero = _tarefasRepository.ObterNumeroTotalTarefas(ObterUserId());
+                ViewBag.NumeroTotal = numero;
 
+                var foraprazo = _tarefasRepository.ObterNumeroTotalTarefasForadoPrazo(ObterUserId());
+                ViewBag.TotalFora = foraprazo;
+
+                var dentroprazo = _tarefasRepository.ObterNumeroTotalTarefasDentrodoPrazo(ObterUserId());
+                ViewBag.TotalDentro = dentroprazo;
+                
+                var igualprazo = _tarefasRepository.ObterNumeroTotalTarefasIgualPrazo(ObterUserId());
+                ViewBag.TotalIgual = igualprazo;
+
+                return View();
+
+            }
 
             return View();
         }

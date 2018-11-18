@@ -1,31 +1,66 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+	ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+<div class="container margin-page">
+	<h1> Controle Geral: </h1>
+	<div class="boxTarefas col-xs-12 col-sm-4 col-md-4 col-lg-2">
+		<div class="text-center">
+			<i class="fas fa-tasks fa-5x"></i>
+		</div>
+		<h3>
+			Tarefas: @ViewBag.NumeroTotal
+			<br/>
+			<br/>
+			<a href="@Url.Action("Index", "Tarefas")">Visualizar</a>
+		</h3>
+	</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+	<div class="boxTarefasFora col-xs-12 col-sm-6 col-sm-offset-1 col-md-4  col-lg-2 col-lg-offset-1">
+		<div class="text-center">
+			<i class="far fa-calendar-times fa-5x"></i>
+		</div>
+		<h3>
+			Fora do Prazo: @ViewBag.TotalFora
+		</h3>
+	</div>
+
+	<div class="boxTarefasDentro col-xs-12 col-sm-6 col-sm-offset-1 col-md-4  col-lg-2 col-lg-offset-1">
+		<div class="text-center">
+			<i class="far fa-thumbs-up fa-5x"></i>
+		</div>
+		<h3>
+			Dentro do Prazo: @ViewBag.TotalDentro
+		</h3>
+	</div>
+	
+	<div class="boxTarefasIgual col-xs-12 col-sm-6 col-sm-offset-5 col-md-4  col-lg-2 col-lg-offset-1">
+		<div class="text-center">
+			<i class="far fa-clock fa-5x"></i>
+		</div>
+
+		<h3>
+			Último dia do Prazo: @ViewBag.TotalIgual
+		</h3>
+		</div>
+
+	</div>
+
+}
+else
+{
+<body class="bg-img">
+<div class="thumbnail  icon-position ">
+		<img src="https://png2.kisspng.com/20180716/ytr/kisspng-project-management-computer-icons-e-commerce-tache-5b4cef53a71df9.7359980615317686596845.png" alt="...">
+		<div class="caption ">
+			<h3 class="text-center">Acessar Tarefas</h3>
+			<p><a href="@Url.Action("Login", "Account")" class="btn btn-primary width-full" role="button">Acessar</a></p>
+		</div>
 </div>
+</body>
+}
+
+
+

@@ -1,7 +1,10 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+
+    font-family: cursive;
 }
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -22,3 +25,138 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.ForaPrazo {
+    background-color: IndianRed
+}
+
+.DentroPrazo {
+    background-color: MediumSeaGreen
+}
+
+.DentroPrazoAviso {
+    background-color: Khaki;
+}
+
+table{
+    font-weight: bold;
+}
+
+.boxTarefas {
+    border-radius: 15px;
+    border: 2px solid black;
+    height: auto;
+    margin-top: 5%;
+    background-color: purple;
+    padding: 2%;
+}
+
+.boxTarefas h3 , i {
+    color: white;
+    text-align: center;
+}
+
+
+
+
+.boxTarefasFora {
+    border-radius: 15px;
+    border: 2px solid black;
+    height: auto;
+    margin-top: 5%;
+    background-color: red;
+    padding: 2%;
+}
+
+.boxTarefasFora h3 , i {        
+    color: white;
+    text-align: center;
+}
+
+
+
+.boxTarefasDentro {
+    border-radius: 15px;
+    border: 2px solid black;
+    height: auto;
+    margin-top: 5%;
+    background-color: green;
+    padding: 2%;
+}
+
+.boxTarefasDentro h3 ,i  {        
+    color: white;
+    text-align: center;
+}
+
+
+
+.boxTarefasIgual {
+    border-radius: 15px;
+    border: 2px solid black;
+    height: auto;
+    margin-top: 5%;
+    background-color: yellow;
+    padding: 2%;
+}
+
+.boxTarefasIgual h3 , i {        
+    color: white;
+    text-align: center;
+}
+
+.margin-left-25 {
+    margin-left: 25px!important;
+}
+
+.logo {
+    height: 60px;
+    width: 129px;
+}
+
+.bg-img {
+    background-image: url("https://cdn.hipwallpaper.com/i/74/55/AlD40c.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.navbar-style--custom {
+    box-shadow: 5px 5px 18px #000000;
+    padding: 15px;
+}
+
+.icon-position {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -30%);
+}
+.width-full {
+    width: 100%;
+}
+
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: 300px;
+    padding:30px;
+  
+}
+
+.borda {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.borda img {
+    padding-left: 17%;
+}
+
+.margin-page {
+    margin-top: 50px;
+}
+
+
+
+

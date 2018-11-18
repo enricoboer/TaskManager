@@ -140,3 +140,5 @@ C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.UI\obj\Debu
 C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.UI\obj\Debug\TarefasAcademicas.UI.csproj.CopyComplete
 C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.UI\obj\Debug\TarefasAcademicas.UI.dll
 C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.UI\obj\Debug\TarefasAcademicas.UI.pdb
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.UI\bin\X.PagedList.dll
+C:\Users\enricoboer\source\repos\TarefasAcademicas\TarefasAcademicas.UI\bin\X.PagedList.Mvc.dll

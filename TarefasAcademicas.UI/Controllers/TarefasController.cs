@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
+using System.ServiceModel.Channels;
 using System.Web.Mvc;
 using TarefasAcademicas.DataAccess.Model;
 using TarefasAcademicas.DataAccess.Repository;
+using X.PagedList;
 
 namespace TarefasAcademicas.UI.Controllers
 {
@@ -16,11 +19,40 @@ namespace TarefasAcademicas.UI.Controllers
             _tarefasRepository = new TarefasRepository();
         }
         // GET: Tarefas
-        public ActionResult Index()
+        public ActionResult Index(int pagina = 1   )
         {
-            var tarefas = _tarefasRepository.ObterPorUsuarioId(ObterUserId());
+            var tarefas = _tarefasRepository.ObterPorUsuarioId(ObterUserId()).ToPagedList(pagina,5);
+
+            var todos = _tarefasRepository.ObterNumeroTotalTarefas(ObterUserId());
+
+            var foraprazo = _tarefasRepository.ObterNumeroTotalTarefasForadoPrazo(ObterUserId());
+            ViewBag.TotalFora = foraprazo;
+
+            foreach (var tarefa in tarefas)
+            {
+                if (tarefa.DataInicio > tarefa.DataFinal)
+                {
+                    tarefa.Status = "Fora do Prazo";
+                    tarefa.StatusClasse = "ForaPrazo";
+                }
+                else if(tarefa.DataInicio == tarefa.DataFinal)
+                {
+                    tarefa.Status = "Dentro do Prazo";
+                    tarefa.StatusClasse = "DentroPrazoAviso";
+                }
+                else
+                {
+                    tarefa.Status = "Dentro do Prazo";
+                    tarefa.StatusClasse = "DentroPrazo";
+                }
+
+               
+            }
+
             return View(tarefas);
         }
+
+    
 
         // GET: Tarefas/Details/5
         public ActionResult Details(Guid id)
@@ -102,5 +134,9 @@ namespace TarefasAcademicas.UI.Controllers
            _tarefasRepository.Deletar(id);
             return RedirectToAction("Index");
         }
+
+       
+
+      
     }
 }

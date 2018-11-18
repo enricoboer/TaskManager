@@ -1,30 +1,49 @@
-﻿@model IEnumerable<TarefasAcademicas.DataAccess.Model.Tarefas>
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<TarefasAcademicas.DataAccess.Model.Tarefas>
+
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
-<br/>
+<br />
 
-<p>
-	<a href="@Url.Action("Create", "Tarefas")" role="button" class="btn btn-success">Nova tarefa</a>
+<p class="margin-page">
+	<a href="@Url.Action("Create", "Tarefas")" role="button" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nova tarefa</a>
 </p>
+
+@using (Html.BeginForm())
+{
+	
+	<div class="alert alert-warning" role="alert">
+		Atenção! Você tem @ViewBag.TotalFora tarefa(s) fora do prazo.
+	</div>
+
+}
+
+
+
 <table class="table">
+
 	<tr>
 		<th>
-			<i class="glyphicon glyphicon-search "></i> @Html.DisplayNameFor(model => model.Tarefa)
+			<i class="glyphicon glyphicon-search "></i> @Html.DisplayNameFor(model => model.FirstOrDefault().Tarefa)
 		</th>
 		<th>
-			<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayNameFor(model => model.DataInicio)
+			<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayNameFor(model => model.FirstOrDefault().DataInicio)
 		</th>
 		<th>
-			<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayNameFor(model => model.DataFinal)
+			<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayNameFor(model => model.FirstOrDefault().DataFinal)
 		</th>
 		<th>
-			<i class="glyphicon glyphicon-tasks"></i> @Html.DisplayNameFor(model => model.Categoria)
+			<i class="glyphicon glyphicon-tasks"></i> @Html.DisplayNameFor(model => model.FirstOrDefault().Categoria)
+		</th>
+		<th>
+			<i class="glyphicon glyphicon-eye-open"></i> @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
 		</th>
 		<th></th>
 	</tr>
+
 
 	@foreach (var item in Model)
 	{
@@ -41,13 +60,27 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.Categoria)
 			</td>
+			<td class="@item.StatusClasse">
+				@Html.DisplayFor(modelItem => item.Status)
+			</td>
 			<td>
-				<a href="@Url.Action("Edit", "Tarefas", new {id = item.Id})" role="button" class="glyphicon glyphicon-pencil btn btn-warning"> Editar</a>
-				<a href="@Url.Action("Details", "Tarefas", new {id = item.Id})" role="button" class=" glyphicon glyphicon-info-sign btn btn-info"> Detalhes</a>
-				<a href="@Url.Action("Delete", "Tarefas", new {id = item.Id})" role="button" class="glyphicon glyphicon-remove btn btn-danger"> Deletar</a>
-
+				<a href="@Url.Action("Edit", "Tarefas", new {id = item.Id})" role="button" class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a>
+				<a href="@Url.Action("Details", "Tarefas", new {id = item.Id})" role="button" class="btn btn-info"><i class="fas fa-info-circle"></i> Detalhes</a>
+				<a href="@Url.Action("Delete", "Tarefas", new {id = item.Id})" role="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Deletar</a>
 			</td>
 		</tr>
 	}
 
 </table>
+
+<div class="row">
+	<div class="col-lg-8">
+		@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+	</div>
+
+	<div class="col-lg-4">
+		<span class="pull-right">
+			Listando Tarefas de @Model.FirstItemOnPage a @Model.LastItemOnPage de um total de @Model.TotalItemCount
+		</span>
+	</div>
+</div>

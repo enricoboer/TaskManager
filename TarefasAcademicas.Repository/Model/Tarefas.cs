@@ -23,6 +23,10 @@ namespace TarefasAcademicas.DataAccess.Model
 
         public string Categoria { get; set; }
 
+        public string Status { get; set; }
+
+        public string StatusClasse { get; set; }
+
         [ForeignKey("Usuario")]
         public Guid UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
